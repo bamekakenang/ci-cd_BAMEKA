@@ -1,0 +1,17 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Tag de l'image (ex: v1.0.0)"
+        required: true
+        default: "v1.0.0"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Déploiement
+        run: echo "Déploiement de l'image ghcr.io/${{ github.repository_owner }}/ci-cd:${{ github.event.inputs.version }} sur production..." 
