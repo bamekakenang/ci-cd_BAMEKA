@@ -28,7 +28,10 @@ jobs:
 
       - name: Lint (ruff)
         run: ruff check .
-
+      
       - name: Run tests with coverage (fail if < 80%)
-        run: pytest --cov=app --cov-report=term-missing --cov-fail-under=80
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          pytest --cov=app --cov-report=term-missing --cov-fail-under=80
+
 
