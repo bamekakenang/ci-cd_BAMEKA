@@ -1,4 +1,4 @@
-name: CI
+kname: CI
 
 on:
   push:
@@ -30,10 +30,11 @@ jobs:
       - name: Lint with ruff
         run: ruff check .
 
-      - name: Run tests with coverage (fix PYTHONPATH)
+      - name: Run tests with coverage (fix working directory)
         run: |
-          # Ajout du dossier courant dans le PYTHONPATH
+          cd $GITHUB_WORKSPACE/ci-cd_BAMEKA
           export PYTHONPATH="${PYTHONPATH}:$(pwd)"
-          echo "PYTHONPATH=$PYTHONPATH"
+          echo "Current directory: $(pwd)"
+          echo "Python path: $PYTHONPATH"
           pytest --maxfail=1 --disable-warnings -q --cov=app --cov-report=term-missing --cov-fail-under=80
 
