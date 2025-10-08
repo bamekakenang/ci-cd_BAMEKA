@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 name: Docker
+=======
+name: Docker (GHCR)
+>>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)
 
 on:
   push:
     tags:
+<<<<<<< HEAD
       - "v*.*.*"
+=======
+      - 'v*'
+>>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)
 
 permissions:
   contents: read
@@ -13,16 +21,46 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
+<<<<<<< HEAD
       - uses: actions/checkout@v4
       - name: Log in to GHCR
+=======
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GHCR
+>>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+<<<<<<< HEAD
+=======
+
+      - name: Prepare image metadata
+        id: prep
+        run: |
+          REF_NAME="${{ github.ref_name }}"
+          REPO_NAME="${{ github.event.repository.name }}"
+          OWNER_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          REPO_LOWER=$(echo "$REPO_NAME" | tr '[:upper:]' '[:lower:]')
+          echo "TAG=$REF_NAME" >> $GITHUB_OUTPUT
+          echo "IMAGE=ghcr.io/$OWNER_LOWER/$REPO_LOWER" >> $GITHUB_OUTPUT
+
+>>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
+<<<<<<< HEAD
           tags: ghcr.io/${{ github.repository_owner }}/ci-cd:latest
+=======
+          tags: ${{ steps.prep.outputs.IMAGE }}:${{ steps.prep.outputs.TAG }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+>>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)

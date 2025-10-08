@@ -4,14 +4,39 @@ on:
   workflow_dispatch:
     inputs:
       version:
+<<<<<<< HEAD
         description: "Tag de l'image (ex: v1.0.0)"
         required: true
         default: "v1.0.0"
+=======
+        description: 'Tag de l\'image (ex: v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+>>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+<<<<<<< HEAD
     environment: production
     steps:
       - name: Déploiement
         run: echo "Déploiement de l'image ghcr.io/${{ github.repository_owner }}/ci-cd:${{ github.event.inputs.version }} sur production..." 
+=======
+    environment:
+      name: production
+    steps:
+      - name: Afficher message de déploiement
+        env:
+          APP_SECRET: ${{ secrets.APP_SECRET }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+          VERSION: ${{ github.event.inputs.version }}
+        run: |
+          OWNER_LOWER=$(echo "$OWNER" | tr '[:upper:]' '[:lower:]')
+          REPO_LOWER=$(echo "$REPO" | tr '[:upper:]' '[:lower:]')
+          echo "Déploiement de l'image ghcr.io/${OWNER_LOWER}/${REPO_LOWER}:${VERSION} sur production..."
+          echo "APP_SECRET présent (longueur) : ${#APP_SECRET}"
+          # Ici, vous pourriez faire un 'docker run' ou un déploiement vers un cluster/VM.
+          # L'étape simule le déploiement conformément au sujet.
+>>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)

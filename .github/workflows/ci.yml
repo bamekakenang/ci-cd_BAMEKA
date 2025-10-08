@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 kname: CI
+=======
+name: CI
+>>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)
 
 on:
   push:
@@ -6,6 +10,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
+<<<<<<< HEAD
 permissions:
   contents: read
 
@@ -15,18 +20,30 @@ jobs:
 
     steps:
       - name: Checkout repository
+=======
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+>>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
+<<<<<<< HEAD
           python-version: "3.12"
+=======
+          python-version: '3.11'
+>>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+<<<<<<< HEAD
       - name: Lint with ruff
         run: ruff check .
 
@@ -38,3 +55,11 @@ jobs:
           echo "Python path: $PYTHONPATH"
           pytest --maxfail=1 --disable-warnings -q --cov=app --cov-report=term-missing --cov-fail-under=80
 
+=======
+      - name: Lint (ruff)
+        run: ruff check .
+
+      - name: Run tests with coverage (fail if <80%)
+        run: |
+          pytest --maxfail=1 --disable-warnings -q --cov=app --cov-report=term-missing --cov-fail-under=80
+>>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)
