@@ -77,3 +77,4 @@ Dans l'onglet **Actions** > **deploy**, cliquez **Run workflow**, choisissez la 
 >>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)
 
 Trigger CI Mer  8 oct 2025 09:54:24 CEST
+PR trigger
