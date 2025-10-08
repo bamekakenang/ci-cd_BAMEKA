@@ -75,3 +75,5 @@ git push origin v1.0.0
 ## Déploiement manuel
 Dans l'onglet **Actions** > **deploy**, cliquez **Run workflow**, choisissez la version (ex: `v1.0.0`), puis un **relecteur** approuve l'environnement `production`.
 >>>>>>> 19c9cfa (Init CI/CD: app FastAPI, tests, Docker, workflows)
+
+Trigger CI Mer  8 oct 2025 09:54:24 CEST
